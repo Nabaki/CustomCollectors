@@ -7,7 +7,7 @@ import java.util.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class SoloCollectorTest {
+public class SingleElementCollectorTest {
 
     private final List<String> emptyList = Collections.emptyList();
     private final List<String> singleElementList = Collections.singletonList("element1");
@@ -87,12 +87,5 @@ public class SoloCollectorTest {
         assertThatThrownBy(() -> multipleElementsList.stream().collect(SingleElementCollector.onlyOne(() -> customRuntimeException)))
                 .isInstanceOf(customRuntimeException.getClass())
                 .hasMessage(customRuntimeException.getMessage());
-    }
-
-    @Test
-    public void throwReturnRightStacktrace(){
-        singleElementList.stream().collect(SingleElementCollector.zeroOrOne());
-
-        multipleElementsList.stream().collect(SingleElementCollector.zeroOrOne());
     }
 }

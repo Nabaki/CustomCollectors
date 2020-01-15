@@ -10,8 +10,6 @@ public final class SingleElementCollector {
 
     private SingleElementCollector(){}
 
-    private static final RuntimeException MORE_THAN_ONE_ELEMENT_EXCEPTION = new IllegalStateException("More than one value was returned");
-
     /**
      * Collector which get an optional element if the stream contains less than one element or throw an exception
      *
@@ -32,7 +30,7 @@ public final class SingleElementCollector {
      * @throws IllegalStateException in case the stream contains more than one matching element
      */
     public static <T> Collector<T, ?, Optional<T>> zeroOrOne() {
-        return zeroOrOne(() -> MORE_THAN_ONE_ELEMENT_EXCEPTION);
+        return zeroOrOne(() -> new IllegalStateException("More than one value was returned"));
     }
 
     /**
@@ -56,5 +54,10 @@ public final class SingleElementCollector {
      */
     public static <T> Collector<T, ?, T> onlyOne() {
         return Collectors.collectingAndThen(zeroOrOne(), Optional::get);
+    }
+
+
+    public static String truc(){
+        return "truc";
     }
 }

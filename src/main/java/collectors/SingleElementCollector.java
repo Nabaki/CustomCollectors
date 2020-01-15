@@ -55,9 +55,4 @@ public final class SingleElementCollector {
     public static <T> Collector<T, ?, T> onlyOne() {
         return Collectors.collectingAndThen(zeroOrOne(), Optional::get);
     }
-
-
-    public static String truc(){
-        return "truc";
-    }
 }

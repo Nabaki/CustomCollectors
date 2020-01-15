@@ -88,4 +88,11 @@ public class SoloCollectorTest {
                 .isInstanceOf(customRuntimeException.getClass())
                 .hasMessage(customRuntimeException.getMessage());
     }
+
+    @Test
+    public void throwReturnRightStacktrace(){
+        singleElementList.stream().collect(SingleElementCollector.zeroOrOne());
+
+        multipleElementsList.stream().collect(SingleElementCollector.zeroOrOne());
+    }
 }
